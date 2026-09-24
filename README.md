@@ -51,7 +51,7 @@ A full-stack social networking application with a **Next.js + TypeScript** front
 - Each tab loads once and is cached, so switching tabs never refetches.
 
 ### Authentication
-- The app is used as an authenticated experience (the list screen is only reachable from inside the logged-in app). **[TODO: describe the auth mechanism, e.g. JWT, sessions, or OAuth]**
+- The app is used as an authenticated experience (the list screen is only reachable from inside the logged-in app). 
 
 ---
 
@@ -63,7 +63,7 @@ A full-stack social networking application with a **Next.js + TypeScript** front
 | Language | **TypeScript** | Components are `.tsx`; the `@/` import alias is used |
 | HTTP client | **Axios** (likely) | API responses are consumed as `res.data`. **[TODO: confirm]** |
 | Backend | **Python** | `venv/`, `__pycache__/` and `*.egg-info/` are ignored. **[TODO: confirm framework, e.g. FastAPI]** |
-| Database | **[TODO]** | |
+| Database | **pgadmin** | |
 | CI | **GitHub Actions** | Workflows live in `.github/workflows/` |
 | Frontend hosting | **Vercel** | |
 | Backend hosting | **[TODO]** | |
