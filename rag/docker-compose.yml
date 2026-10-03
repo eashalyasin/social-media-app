@@ -1,0 +1,35 @@
+﻿services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: fomo-rag-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fomorag
+      POSTGRES_PASSWORD: fomorag_dev_password
+      POSTGRES_DB: fomo_rag
+    ports:
+      - "5435:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fomorag -d fomo_rag"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: fomo-rag-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://fomorag:fomorag_dev_password@postgres:5432/fomo_rag
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
